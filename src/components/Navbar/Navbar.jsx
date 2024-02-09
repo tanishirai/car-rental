@@ -18,13 +18,13 @@ const Navbar = () => {
       </div>
 
       <div className="burger" id="burger" onClick={handleClick}>
-        <span className="burger-line"></span>
-        <span className="burger-line"></span>
-        <span className="burger-line"></span>
+        <span className={`burger-line ${isVisible ? 'active' :''}`}></span>
+        <span className={`burger-line ${isVisible ? 'active' :''}`}></span>
+        <span className={`burger-line ${isVisible ? 'active' :''}`}></span>
       </div>
 
-      <div className={`link-container ${isVisible ? '' :'link-container-hidden'}`}>
-        <Link className="nav-link" to="/">
+      <div className={`link-container ${isVisible ? 'link-container-active' :'link-container-hidden'}`}>
+        <Link className="nav-link active" to="/">
           home
         </Link>
         <Link className="nav-link" to="/about">
@@ -35,6 +35,12 @@ const Navbar = () => {
         </Link>
         <Link className="nav-link" to="/testimonials">
           testimonials
+        </Link>
+        <Link className="nav-link" to="/team">
+          our team
+        </Link>
+        <Link className="nav-link" to="/contact">
+          contact us
         </Link>
         <div className="auth-container">
           <Link className="sign-up" to="/">

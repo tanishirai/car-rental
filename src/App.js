@@ -4,6 +4,8 @@ import About from "./Pages/About";
 import Models from "./Pages/Models";
 import Testimonials from "./Pages/Testimonials";
 import Navbar from "./components/Navbar/Navbar";
+import Team from "./Pages/Team";
+import Contact from "./Pages/Contact";
 function App() {
   return (
     <BrowserRouter>
@@ -13,6 +15,8 @@ function App() {
     <Route  path="/about" element={<About/>}/>
     <Route  path="/models" element={<Models/>}/>
     <Route  path="/testimonials" element={<Testimonials/>}/>
+    <Route  path="/team" element={<Team/>}/>
+    <Route  path="/contact" element={<Contact/>}/>
     </Routes>
     </BrowserRouter>
   );

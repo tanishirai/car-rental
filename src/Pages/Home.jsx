@@ -1,10 +1,22 @@
-import React from 'react'
+import React from "react";
+import Booking from "../components/Booking/Booking";
+import "./home.css";
+import Hero from "../components/Hero/Hero";
+import Work from "../components/Working/Work";
 const Home = () => {
   return (
-    <>
-    <h1>home</h1>
-    </>
-  )
-}
+    <main>
+      <div className="hero">
+        <Hero />
+      </div>
+      <div className="booking">
+        <Booking />
+      </div>
+      <div className="working">
+        <Work />
+      </div>
+    </main>
+  );
+};
 
-export default Home
+export default Home;

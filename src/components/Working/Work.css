@@ -1,0 +1,56 @@
+.w-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.w-container .w-t{
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+}
+
+.w-container .w-p{
+    color: var(--text-color-5);
+    text-align: center;
+    margin: 0 0 2rem 0;
+}
+
+
+.w-d{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+.payment,
+.p-d,
+.p-u,
+.s-c{
+    display: flex;
+    align-items: center;
+    justify-content: center;flex-direction: column;
+    row-gap: 1rem;
+}
+
+.ic{
+    color: var(--text-color-3);
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    background: var(--text-color-2);
+    padding: 1rem;
+    border-radius: 50%;
+    width: 6rem;
+    justify-content: center;
+    height: 6rem;
+}
+
+.h-t{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
