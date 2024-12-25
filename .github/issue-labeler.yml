@@ -47,8 +47,6 @@ maintenance:
 # Specific technologies (adjust based on your project)
 javascript:
   - '(javascript|js|ecmascript)'
-python:
-  - '(python|py|pip)'
 react:
   - '(react|jsx|component)'
 
