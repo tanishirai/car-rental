@@ -8,8 +8,6 @@ Welcome to the Car Rental System project! This application allows users to rent 
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -23,10 +21,10 @@ Welcome to the Car Rental System project! This application allows users to rent 
 
 ## Technologies Used
 
-- **Frontend:** HTML, CSS, JavaScript, React (or any other framework you used)
-- **Backend:** Node.js, Express.js (or any other backend technology)
-- **Database:** MongoDB (or any other database you used)
-- **Deployment:** Heroku, Vercel, or any other hosting service
+- **Frontend:** HTML, CSS, JavaScript, React 
+- **Backend:** Node.js, Express.js 
+- **Database:** MongoDB 
+- **Deployment:** Vercel
 
 ## Installation
 
