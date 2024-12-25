@@ -1,0 +1,13 @@
+name: "Issue Assigner"
+
+on:
+  issues:
+    types: [opened]  
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign issue
+        uses: estrada9166/issue-assigner@v1
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          WITH_COMMENTS: true
