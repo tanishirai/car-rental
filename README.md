@@ -35,9 +35,19 @@ To get started with the Car Rental System, follow these steps:
 1. Clone the repository:
    ```bash
    git clone https://github.com/saurabh-dev-vns/car-rental.git
-   
 
 2. Navigate to the project directory:
     ```bash
    cd car-rental
-   
+
+3. Install the required dependencies:
+    ```bash
+   npm install
+
+4. Set up your environment variables. Create a .env file in the root directory and add the necessary configurations (e.g., database connection string, API keys).
+5. Start the development server:
+    ```bash
+   npm start
+6. Open your browser and go to http://localhost:3000 to view the application.
+
+
