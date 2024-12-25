@@ -48,4 +48,8 @@ To get started with the Car Rental System, follow these steps:
    npm start
 6. Open your browser and go to http://localhost:3000 to view the application.
 
-
+## Usage
+1. User Registration: Create an account to start renting cars.
+2. Browse Cars: View the list of available cars and their details.
+3. Book a Car: Select a car, choose your rental dates, and confirm your booking.
+4. Admin Panel: If you are an admin, log in to manage cars and bookings.
