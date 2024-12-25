@@ -49,17 +49,3 @@ javascript:
   - '(javascript|js|ecmascript)'
 react:
   - '(react|jsx|component)'
-
-# Testing and quality
-test:
-  - '(test|testing|unit test|integration test)'
-qa:
-  - '(qa|quality assurance|manual testing)'
-
-# Platforms
-windows:
-  - '(windows|win|microsoft)'
-mac:
-  - '(mac|macos|apple)'
-linux:
-  - '(linux|ubuntu|debian|fedora)'
