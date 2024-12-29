@@ -3,7 +3,8 @@
 Welcome to the Car Rental  project! This application allows users to rent cars easily and efficiently. It provides a user-friendly interface for both customers and administrators to manage car rentals.
 
 ## This project is now OFFICIALLY accepted for
-<img src="./logo-1.png" alt="SWOC" width="80%">
+
+<img src="./logo-1.png" alt="Car Rental Logo" width="200" height="100">
 
 ## Table of Contents
 
