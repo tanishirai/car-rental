@@ -1,6 +1,6 @@
-# Car Rental System
+# Car Rental 
 
-Welcome to the Car Rental System project! This application allows users to rent cars easily and efficiently. It provides a user-friendly interface for both customers and administrators to manage car rentals.
+Welcome to the Car Rental  project! This application allows users to rent cars easily and efficiently. It provides a user-friendly interface for both customers and administrators to manage car rentals.
 
 ## Table of Contents
 
