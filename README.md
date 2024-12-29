@@ -47,7 +47,11 @@ Welcome to the Car Rental System project! This application allows users to rent 
    ```sh
    npm install
    ```
-3. Start the development server:
+3. Create a `.env` file in the client directory and add the necessary configurations. For example:
+   ```plaintext
+   VITE_API_URL=http://localhost:5000/api
+   ```
+4. Start the development server:
    ```sh
    npm run dev
    ```
@@ -61,16 +65,16 @@ Welcome to the Car Rental System project! This application allows users to rent 
    ```sh
    npm install
    ```
-3. Start the server:
+3. Create a `.env` file in the server directory and add the necessary configurations. For example:
+   ```plaintext
+   PORT=5000
+   MONGO_URI=mongodb://localhost:27017/car-rental
+   JWT_SECRET=your_jwt_secret
+   ```
+4. Start the server:
    ```sh
    npm start
    ```
-
-4. Set up your environment variables. Create a .env file in the root directory and add the necessary configurations (e.g., database connection string, API keys).
-5. Start the development server:
-    ```bash
-   npm start
-6. Open your browser and go to http://localhost:3000 to view the application.
 
 ## Usage
 1. User Registration: Create an account to start renting cars.
