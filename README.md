@@ -4,7 +4,7 @@ Welcome to the Car Rental  project! This application allows users to rent cars e
 
 ## This project is now OFFICIALLY accepted for
 
-<img src="./logo-1.png" alt="Car Rental Logo" width="200" height="100">
+<img src="./logo-1.png" alt="Car Rental Logo" width="80%">
 
 ## Table of Contents
 
