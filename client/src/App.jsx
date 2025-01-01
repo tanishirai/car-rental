@@ -6,6 +6,7 @@ import Testimonials from "./Pages/Testimonials";
 import Navbar from "./components/Navbar/Navbar";
 import Team from "./Pages/Team";
 import Contact from "./Pages/Contact";
+import Errorpage from "./Pages/Errorpage"; 
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/team" element={<Team />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<Errorpage />} />
       </Routes>
     </BrowserRouter>
   );
