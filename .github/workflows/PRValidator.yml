@@ -2,12 +2,19 @@ name: PR Description Check
 
 on:
   pull_request:
-    types: [opened,edited]
+    types: [opened, edited]
+
+permissions:
+  pull-requests: write
 
 jobs:
   validate-pr-description:
     runs-on: ubuntu-latest
     steps:
+      - name: Print PR Description
+        run: |
+          echo "PR Description: ${{ github.event.pull_request.body }}"
+
       - name: Validate PR Description
         id: check_description
         run: |
@@ -16,11 +23,19 @@ jobs:
             exit 1
           fi
 
-      - name: Check for issue number or 'Fix #NEW'
+      - name: Check for issue number or 'Fixes: #(issue no.)'
         id: check_issue_number
         run: |
           description="${{ github.event.pull_request.body }}"
-          if [[ ! "$description" =~ [Ff]ix #[0-9]+|[Ff]ix #NEW ]]; then
-            echo "::error::PR description must contain an issue number or 'Fix #NEW'"
+          echo "Checking description: $description"
+          if [[ ! "$description" =~ [Ff]ixes: #[0-9]+ ]]; then
+            echo "::error::PR description must contain 'Fixes: #(issue no.)'"
             exit 1
           fi
+
+      - name: Label PR without issue
+        if: ${{ steps.check_issue_number.outcome == 'failure' }}
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: no-issue
