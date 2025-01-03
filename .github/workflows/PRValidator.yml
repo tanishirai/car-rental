@@ -11,31 +11,18 @@ jobs:
   validate-pr-description:
     runs-on: ubuntu-latest
     steps:
-      - name: Print PR Description
-        run: |
-          echo "PR Description: ${{ github.event.pull_request.body }}"
+      - name: Check out repository
+        uses: actions/checkout@v2
 
       - name: Validate PR Description
-        id: check_description
+        id: validate
         run: |
           if [ -z "${{ github.event.pull_request.body }}" ]; then
-            echo "::error::Description is missing!"
+            echo "Pull request description is empty. Please provide a description."
             exit 1
           fi
 
-      - name: Check for issue number or 'Fixes: #(issue no.)'
-        id: check_issue_number
+      - name: Set PR status
+        if: steps.validate.outcome == 'failure'
         run: |
-          description="${{ github.event.pull_request.body }}"
-          echo "Checking description: $description"
-          if [[ ! "$description" =~ [Ff]ixes: #[0-9]+ ]]; then
-            echo "::error::PR description must contain 'Fixes: #(issue no.)'"
-            exit 1
-          fi
-
-      - name: Label PR without issue
-        if: ${{ steps.check_issue_number.outcome == 'failure' }}
-        uses: actions-ecosystem/action-add-labels@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          labels: no-issue
+          gh pr comment ${{ github.event.pull_request.number }} --body "❌ Pull request description is empty. Please provide a description."
