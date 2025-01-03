@@ -23,13 +23,13 @@ jobs:
             exit 1
           fi
 
-      - name: Check for issue number or 'Fix #NEW'
+      - name: Check for issue number or 'Fixes: #(issue no.)'
         id: check_issue_number
         run: |
           description="${{ github.event.pull_request.body }}"
           echo "Checking description: $description"
-          if [[ ! "$description" =~ [Ff]ix #[0-9]+|[Ff]ix #NEW ]]; then
-            echo "::error::PR description must contain an issue number or 'Fix #NEW'"
+          if [[ ! "$description" =~ [Ff]ixes: #[0-9]+ ]]; then
+            echo "::error::PR description must contain 'Fixes: #(issue no.)'"
             exit 1
           fi
 
