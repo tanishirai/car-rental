@@ -9,35 +9,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Close stale issues
-        uses: actions/github-script@v6
+        uses: actions/stale@v9.0.0
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const issues = await github.paginate(github.rest.issues.listForRepo, {
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open'
-            });
-
-            const staleIssues = issues.filter(issue => {
-              const createdAt = new Date(issue.created_at);
-              const now = new Date();
-              const oneWeek = 7 * 24 * 60 * 60 * 1000;
-              return (now - createdAt) > oneWeek && !issue.pull_request;
-            });
-
-            for (const issue of staleIssues) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                body: 'This issue is being closed due to inactivity. No pull request was raised within a week.'
-              });
-
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                state: 'closed'
-              });
-            }
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message: 'This issue is being marked as stale due to inactivity.'
+          stale-pr-message: 'This pull request is being marked as stale due to inactivity.'
+          days-before-stale: 60
+          days-before-close: 7
+          stale-issue-label: 'Stale'
+          stale-pr-label: 'Stale'
+          remove-stale-when-updated: true
+          only-labels: ''
+          exempt-issue-labels: ''
+          exempt-pr-labels: ''
+          operations-per-run: 30
+          remove-issue-stale-when-updated: true
+          remove-pr-stale-when-updated: true
+          close-issue-message: 'This issue is being closed due to inactivity. No pull request was raised within a week.'
+          close-pr-message: 'This pull request is being closed due to inactivity. No updates were made within a week.'
