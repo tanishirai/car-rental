@@ -17,30 +17,31 @@ const Register = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  // Listen to auth state changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log("User is logged in:", user);
-        navigate("/");
+        navigate("/"); // Redirect to /home if logged in
       } else {
-        console.log("User is not logged in.");
+        console.log("User is not logged in."); // Log when there is no user
       }
     });
-    return () => unsubscribe();
+    return () => unsubscribe(); // Cleanup on unmount
   }, [navigate]);
 
+  // Google Sign-In Handler
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      const result = await signInWithPopup(auth, provider);
-      console.log("Google signed-in user:", result.user);
+      await signInWithPopup(auth, provider);
       alert("Signed in with Google successfully!");
     } catch (error) {
       console.error("Google sign-in error:", error);
-      setError(error.message);
+      setError("Failed to sign in with Google. Please try again.");
     }
   };
 
+  // Email/Password Registration Handler
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
@@ -49,21 +50,12 @@ const Register = () => {
     }
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        formData.email,
-        formData.password
-      );
-      console.log("Registered user:", userCredential.user);
+      await createUserWithEmailAndPassword(auth, formData.email, formData.password);
       alert("Registration successful!");
     } catch (error) {
       console.error("Registration error:", error);
-      setError(error.message);
+      setError("Failed to register. Please try again.");
     }
-  };
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -72,28 +64,31 @@ const Register = () => {
       <form onSubmit={handleSubmit} style={styles.form}>
         <input
           type="email"
-          name="email"
           value={formData.email}
           placeholder="Enter email"
-          onChange={handleChange}
+          onChange={(e) =>
+            setFormData({ ...formData, email: e.target.value })
+          }
           required
           style={styles.input}
         />
         <input
           type="password"
-          name="password"
           value={formData.password}
           placeholder="Enter password"
-          onChange={handleChange}
+          onChange={(e) =>
+            setFormData({ ...formData, password: e.target.value })
+          }
           required
           style={styles.input}
         />
         <input
           type="password"
-          name="confirmPassword"
           value={formData.confirmPassword}
           placeholder="Confirm password"
-          onChange={handleChange}
+          onChange={(e) =>
+            setFormData({ ...formData, confirmPassword: e.target.value })
+          }
           required
           style={styles.input}
         />

@@ -17,7 +17,7 @@ const Login = () => {
       if (user) {
         navigate("/"); // Redirect to /home if logged in
       } else {
-        console.log("User is not logged in."); // Log when there is no user
+        console.log("User is logged out");
       }
     });
     return () => unsubscribe(); // Cleanup on unmount
@@ -28,10 +28,10 @@ const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
-      navigate("/"); // Redirect to home on successful login
+      alert("Login successful!");
     } catch (error) {
       console.error("Login error:", error);
-      setError("Failed to login. Please check your email and password.");
+      setError("Failed to login. Please check your credentials and try again.");
     }
   };
 
@@ -40,7 +40,7 @@ const Login = () => {
     const provider = new GoogleAuthProvider();
     try {
       await signInWithPopup(auth, provider);
-      navigate("/"); // Redirect to home on successful login
+      alert("Login with Google successful!");
     } catch (error) {
       console.error("Google login error:", error);
       setError("Failed to login with Google. Please try again.");
