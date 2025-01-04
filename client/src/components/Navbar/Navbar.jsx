@@ -25,29 +25,29 @@ const Navbar = () => {
 
       <div className={`link-container ${isVisible ? 'link-container-active' :'link-container-hidden'}`}>
         <Link className="nav-link active" to="/">
-          home
+          Home
         </Link>
         <Link className="nav-link" to="/about">
-          about
+          About
         </Link>
         <Link className="nav-link" to="/models">
-          models
+          Models
         </Link>
         <Link className="nav-link" to="/testimonials">
-          testimonials
+          Testimonials
         </Link>
         <Link className="nav-link" to="/team">
-          our team
+          Our team
         </Link>
         <Link className="nav-link" to="/contact">
-          contact us
+          Contact us
         </Link>
         <div className="auth-container">
           <Link className="sign-up" to="/register">
-            sign up
+            Sign up
           </Link>
           <Link className="log-in" to="/login">
-            log in
+            Login
           </Link>
         </div>
       </div>
