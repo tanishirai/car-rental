@@ -1,12 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: "Protest Riot", sans-serif;
+  font-family: "Lora", sans-serif;
 }
 :root{
   --text-color-1:#000000;
