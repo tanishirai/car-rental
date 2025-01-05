@@ -3,6 +3,7 @@ name: Restrict Owner Help Request
 on:
   issues:
     types: [opened]
+  workflow_dispatch: # Allow manual triggering
 
 jobs:
   restrict-owner-help-request:
