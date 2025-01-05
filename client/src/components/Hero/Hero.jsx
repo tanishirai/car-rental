@@ -3,7 +3,9 @@ import Car1 from "../../images/car-1.png";
 import "./Hero.css";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaRegCheckCircle } from "react-icons/fa";
+import {useNavigate} from 'react-router-dom';
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <main>
       <div className="h-container">
@@ -17,7 +19,7 @@ const Hero = () => {
             flexible pick-up options and much more.
           </p>
           <div className="b-1">
-            <button className="b-r">Book Ride &nbsp;<FaRegCheckCircle /></button>
+            <button className="b-r" onClick={() => navigate("/models")}>Book Ride &nbsp;<FaRegCheckCircle /></button>
             <button className="l-m">Learn More &nbsp;<MdKeyboardArrowRight /></button>
           </div>
         </div>
