@@ -1,5 +1,6 @@
 import React from 'react';
 import './Team.css';
+import Footer from '../components/Footer/Footer';
 
 const Team = () => {
   const teamMembers = [
@@ -30,6 +31,7 @@ const Team = () => {
   ];
 
   return (
+    <>
     <div className="team-container">
       <div className="team-header">
         <h1>Meet Our Team</h1>
@@ -51,6 +53,8 @@ const Team = () => {
         ))}
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 
