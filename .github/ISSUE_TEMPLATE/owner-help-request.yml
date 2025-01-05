@@ -3,24 +3,6 @@ description: "Owners can use this template to raise issues on behalf of others w
 title: "HELP: <Brief description of the issue>"
 labels: ["help wanted", "status: needs triage"]
 body:
-  - type: input
-    id: requester_name
-    attributes:
-      label: "Requester Name"
-      description: "Name of the person requesting help."
-      placeholder: "E.g., John Doe"
-    validations:
-      required: true
-
-  - type: input
-    id: requester_contact
-    attributes:
-      label: "Requester Contact"
-      description: "Contact information of the person requesting help."
-      placeholder: "E.g., john.doe@example.com"
-    validations:
-      required: true
-
   - type: textarea
     id: issue_summary
     attributes:
