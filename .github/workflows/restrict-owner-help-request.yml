@@ -1,0 +1,41 @@
+name: Restrict Owner Help Request
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  restrict-owner-help-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if issue is "Owner Help Request"
+        id: check_template
+        run: |
+          if [[ "${{ github.event.issue.title }}" == "HELP: "* ]]; then
+            echo "::set-output name=is_owner_help_request::true"
+          else
+            echo "::set-output name=is_owner_help_request::false"
+          fi
+
+      - name: Get issue creator
+        if: steps.check_template.outputs.is_owner_help_request == 'true'
+        id: get_creator
+        run: echo "::set-output name=creator::${{ github.event.issue.user.login }}"
+
+      - name: Check if creator is owner
+        if: steps.check_template.outputs.is_owner_help_request == 'true'
+        id: check_owner
+        run: |
+          OWNER=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }} | jq -r '.owner.login')
+          if [[ "${{ steps.get_creator.outputs.creator }}" == "$OWNER" ]]; then
+            echo "::set-output name=is_owner::true"
+          else
+            echo "::set-output name=is_owner::false"
+          fi
+
+      - name: Close issue if not created by owner
+        if: steps.check_owner.outputs.is_owner == 'false'
+        run: |
+          curl -s -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -d '{"state": "closed", "labels": ["invalid"], "body": "This issue template is restricted to repository owners only."}' \
+          https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}
