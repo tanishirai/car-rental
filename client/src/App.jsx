@@ -8,7 +8,8 @@ import Team from "./Pages/Team";
 import Contact from "./Pages/Contact";
 import Errorpage from "./Pages/Errorpage"; 
 import Login from "./components/Auth/Login"
-import Register from "./components/Auth/Register"
+import Register from "./components/Auth/Register";
+import LearnMore from "./Pages/LearnMore";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="*" element={<Errorpage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register/>} />
+        <Route path ="/learnmore" element={<LearnMore/>} />
       </Routes>
     </BrowserRouter>
   );
