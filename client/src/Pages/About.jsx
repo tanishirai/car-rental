@@ -2,9 +2,11 @@ import React from "react";
 import "./about.css";
 import Content from "../components/Card/Content";
 import Card from "../components/Card/Card";
+import Footer from "../components/Footer/Footer";
 
 const About = () => {
   return (
+    <>
     <div className="about-container">
       <h1 className="about-title">About Us</h1>
       <p className="about-text">
@@ -46,6 +48,8 @@ const About = () => {
         </div>
       </section>
     </div>
+    <Footer/>
+    </>
   );
 };
 
