@@ -54,6 +54,13 @@ Welcome to the Car Rental  project! This application allows users to rent cars e
 3. Create a `.env` file in the client directory and add the necessary configurations. For example:
    ```plaintext
    VITE_API_URL=http://localhost:5000/api
+   VITE_API_KEY="your_api_key_here"
+   VITE_PROJECT_ID="your_project_id_here"
+   VITE_AUTH_DOMAIN="your_auth_domain_here"
+   VITE_STORAGE_BUCKET="your_storage_bucket_here"
+   VITE_MESSAGING_SENDER_ID="your_messaging_sender_id_here"
+   VITE_APP_ID="your_app_id_here"
+   VITE_MEASUREMENT_ID="your_measurement_id_here"
    ```
 4. Start the development server:
    ```sh
