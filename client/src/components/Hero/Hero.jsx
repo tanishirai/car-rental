@@ -20,7 +20,7 @@ const Hero = () => {
           </p>
           <div className="b-1">
             <button className="b-r" onClick={() => navigate("/models")}>Book Ride &nbsp;<FaRegCheckCircle /></button>
-            <button className="l-m">Learn More &nbsp;<MdKeyboardArrowRight /></button>
+            <button className="l-m" onClick={() => navigate("/learnmore")}>Learn More &nbsp;<MdKeyboardArrowRight /></button>
           </div>
         </div>
         <div className="img-cont">
