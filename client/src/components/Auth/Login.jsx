@@ -23,7 +23,7 @@ const Login = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user); // Set user in Zustand store
-        navigate("/booking"); // Redirect to /home if logged in
+        navigate("/booking");
       } else {
         console.log("User is logged out");
       }
@@ -31,7 +31,6 @@ const Login = () => {
     return () => unsubscribe();
   }, [navigate, setUser]);
 
-  // Email/Password Login Handler
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -43,7 +42,6 @@ const Login = () => {
     }
   };
 
-  // Google Login Handler
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     try {

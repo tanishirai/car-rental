@@ -31,7 +31,6 @@ const Register = () => {
     return () => unsubscribe();
   }, [navigate, setUser]);
 
-  // Google Sign-In Handler
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     try {
@@ -44,7 +43,6 @@ const Register = () => {
     }
   };
 
-  // Email/Password Registration Handler
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
@@ -58,7 +56,7 @@ const Register = () => {
         formData.email,
         formData.password
       );
-      setUser(userCredential.user); // Set registered user in Zustand store
+      setUser(userCredential.user); 
       alert("Registration successful!");
     } catch (error) {
       console.error("Registration error:", error);

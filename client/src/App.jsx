@@ -29,7 +29,6 @@ function App() {
         <Route path="/learnmore" element={<LearnMore />} />
         <Route path="*" element={<Errorpage />} />
 
-        {/* Protect the Booking route */}
         <Route
           path="/booking"
           element={
