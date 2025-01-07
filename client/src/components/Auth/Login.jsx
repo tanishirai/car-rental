@@ -7,9 +7,11 @@ import {
 } from "firebase/auth";
 import { auth } from "./Firebase.js";
 import { useNavigate } from "react-router-dom";
+import ForgotPassword from './ForgotPassword';
 import useAuthStore from "../../store/store.js";
 
 const Login = () => {
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -80,11 +82,22 @@ const Login = () => {
         <button type="submit" style={styles.button}>
           Login
         </button>
+        <button
+          type="button"
+          onClick={() => setShowForgotPassword(true)}
+          style={styles.forgotPassword}
+        >
+          Forgot Password?
+        </button>
       </form>
       <p style={styles.or}>OR</p>
       <button onClick={handleGoogleSignIn} style={styles.googleButton}>
         Login with Google
       </button>
+
+      {showForgotPassword && (
+        <ForgotPassword onClose={() => setShowForgotPassword(false)} />
+      )}
     </div>
   );
 };
@@ -139,6 +152,15 @@ const styles = {
     color: "red",
     marginTop: "10px",
   },
+  forgotPassword: {
+    background: "none",
+    border: "none",
+    color: "#007BFF",
+    cursor: "pointer",
+    fontSize: "14px",
+    marginTop: "5px",
+    textDecoration: "underline",
+  }
 };
 
 export default Login;
