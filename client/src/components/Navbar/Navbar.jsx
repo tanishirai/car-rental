@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { auth } from "../Auth/Firebase.js";
 import { signOut } from "firebase/auth";
@@ -9,6 +9,7 @@ const Navbar = () => {
   const { user, setUser, logout } = useAuthStore(); // Access user from Zustand store
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Listen to auth state changes and update Zustand store
   useEffect(() => {
@@ -36,6 +37,11 @@ const Navbar = () => {
     }
   };
 
+  // Function to check if a link is active
+  const isLinkActive = (path) => {
+    return location.pathname === path;
+  };
+
   return (
     <nav className="navbar">
       <div className="brand-container">
@@ -53,24 +59,37 @@ const Navbar = () => {
       <div
         className={`link-container ${
           isVisible ? "link-container-active" : "link-container-hidden"
-        }`}
-      >
-        <Link className="nav-link active" to="/">
+        }`}>
+        <Link
+          className={`nav-link ${isLinkActive("/") ? "active" : ""}`}
+          to="/">
           Home
         </Link>
-        <Link className="nav-link" to="/about">
+        <Link
+          className={`nav-link ${isLinkActive("/about") ? "active" : ""}`}
+          to="/about">
           About
         </Link>
-        <Link className="nav-link" to="/models">
+        <Link
+          className={`nav-link ${isLinkActive("/models") ? "active" : ""}`}
+          to="/models">
           Models
         </Link>
-        <Link className="nav-link" to="/testimonials">
+        <Link
+          className={`nav-link ${
+            isLinkActive("/testimonials") ? "active" : ""
+          }`}
+          to="/testimonials">
           Testimonials
         </Link>
-        <Link className="nav-link" to="/team">
+        <Link
+          className={`nav-link ${isLinkActive("/team") ? "active" : ""}`}
+          to="/team">
           Our team
         </Link>
-        <Link className="nav-link" to="/contact">
+        <Link
+          className={`nav-link ${isLinkActive("/contact") ? "active" : ""}`}
+          to="/contact">
           Contact us
         </Link>
         <div className="auth-container">
