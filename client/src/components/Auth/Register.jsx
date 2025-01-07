@@ -5,8 +5,9 @@ import {
   signInWithPopup,
   onAuthStateChanged,
 } from "firebase/auth";
-import { auth } from "./Firebase";
+import { auth } from "./Firebase.js";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/store.js";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -16,28 +17,30 @@ const Register = () => {
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const setUser = useAuthStore((state) => state.setUser);
 
-  // Listen to auth state changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        navigate("/"); // Redirect to /home if logged in
+        setUser(user);
+        navigate("/booking");
       } else {
-        console.log("User is not logged in."); // Log when there is no user
+        console.log("User is not logged in");
       }
     });
-    return () => unsubscribe(); // Cleanup on unmount
-  }, [navigate]);
+    return () => unsubscribe();
+  }, [navigate, setUser]);
 
   // Google Sign-In Handler
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      setUser(result.user);
       alert("Signed in with Google successfully!");
     } catch (error) {
       console.error("Google sign-in error:", error);
-      setError("Failed to sign in with Google. Please try again.");
+      setError(error.message);
     }
   };
 
@@ -50,11 +53,16 @@ const Register = () => {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+      setUser(userCredential.user); // Set registered user in Zustand store
       alert("Registration successful!");
     } catch (error) {
       console.error("Registration error:", error);
-      setError("Failed to register. Please try again.");
+      setError(error.message);
     }
   };
 
@@ -66,9 +74,7 @@ const Register = () => {
           type="email"
           value={formData.email}
           placeholder="Enter email"
-          onChange={(e) =>
-            setFormData({ ...formData, email: e.target.value })
-          }
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           required
           style={styles.input}
         />

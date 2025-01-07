@@ -10,14 +10,11 @@ const Home = () => {
       <div className="hero">
         <Hero />
       </div>
-      <div className="booking">
-        <Booking />
-      </div>
+
       <div className="working">
         <Work />
       </div>
       <Footer />
-    
     </main>
   );
 };
