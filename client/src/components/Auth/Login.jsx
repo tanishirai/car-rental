@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
-import { auth } from "./Firebase";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { auth } from "./Firebase.js";
 import { useNavigate } from "react-router-dom";
 import ForgotPassword from './ForgotPassword';
+import useAuthStore from "../../store/store.js";
 
 const Login = () => {
   const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -12,20 +18,21 @@ const Login = () => {
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const setUser = useAuthStore((state) => state.setUser);
 
-  // Listen to auth state changes
+  // Listen to auth state changes and update Zustand store
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        navigate("/"); // Redirect to /home if logged in
+        setUser(user); // Set user in Zustand store
+        navigate("/booking");
       } else {
         console.log("User is logged out");
       }
     });
-    return () => unsubscribe(); // Cleanup on unmount
-  }, [navigate]);
+    return () => unsubscribe();
+  }, [navigate, setUser]);
 
-  // Email/Password Login Handler
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -37,11 +44,11 @@ const Login = () => {
     }
   };
 
-  // Google Login Handler
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      setUser(result.user); // Set Google user in Zustand store
       alert("Login with Google successful!");
     } catch (error) {
       console.error("Google login error:", error);
@@ -57,9 +64,7 @@ const Login = () => {
           type="email"
           value={formData.email}
           placeholder="Enter email"
-          onChange={(e) =>
-            setFormData({ ...formData, email: e.target.value })
-          }
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           required
           style={styles.input}
         />
