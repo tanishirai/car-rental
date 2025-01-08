@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from "../components/home/Hero";
 import Work from "../components/home/Work";
+import FAQ from "../components/FAQ/FAQ";
 const Home = () => {
   return (
     <main>
@@ -9,6 +10,9 @@ const Home = () => {
       </div>
       <div className="mt-16 mr-[1.8rem] mb-16 ml-[1.8rem]">
         <Work />
+      </div>
+      <div className="faq">
+        <FAQ />
       </div>
     </main>
   );
