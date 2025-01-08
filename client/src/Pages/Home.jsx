@@ -1,20 +1,28 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Hero from "../components/home/Hero";
 import Work from "../components/home/Work";
-import FAQ from "../components/FAQ/FAQ";
+import Faq from "../components/home/Faq";
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 60 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6 },
+};
+
 const Home = () => {
   return (
-    <main>
-      <div className="mt-8 mr-12 mb-8 ml-12">
+    <motion.main initial="initial" animate="animate" className="min-h-screen">
+      <motion.div variants={fadeInUp}>
         <Hero />
-      </div>
-      <div className="mt-16 mr-[1.8rem] mb-16 ml-[1.8rem]">
+      </motion.div>
+      <motion.div variants={fadeInUp}>
         <Work />
-      </div>
-      <div className="faq">
-        <FAQ />
-      </div>
-    </main>
+      </motion.div>
+      <motion.div variants={fadeInUp}>
+        <Faq />
+      </motion.div>
+    </motion.main>
   );
 };
 
