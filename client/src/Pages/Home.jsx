@@ -4,6 +4,7 @@ import "./home.css";
 import Hero from "../components/Hero/Hero";
 import Work from "../components/Working/Work";
 import Footer from "../components/Footer/Footer";
+import FAQ from "../components/FAQ/FAQ";
 const Home = () => {
   return (
     <main>
@@ -13,6 +14,9 @@ const Home = () => {
 
       <div className="working">
         <Work />
+      </div>
+      <div className="faq">
+        <FAQ />
       </div>
       <Footer />
     </main>
