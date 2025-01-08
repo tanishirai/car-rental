@@ -19,9 +19,7 @@ const Work = () => {
               <FaCar />
             </span>
             <div className="h-t">
-                <p>
-                    Select Car
-                </p>
+              <p>Select Car</p>
             </div>
           </div>
           <div className="p-u">
@@ -29,7 +27,7 @@ const Work = () => {
               <FaLocationDot />
             </span>
             <div className="h-t">
-            <p>Choose pick up & drop off location</p>
+              <p>Choose pick up & drop off location</p>
             </div>
           </div>
           <div className="p-d">
@@ -37,16 +35,16 @@ const Work = () => {
               <FaCalendarAlt />
             </span>
             <div className="h-t">
-                <p>Choose pick up & drop off date</p>
+              <p>Choose pick up & drop off date</p>
             </div>
           </div>
-          
+
           <div className="payment">
             <span className="ic">
               <RiSecurePaymentLine />
             </span>
             <div className="h-t">
-                <p>Secure Payment</p>
+              <p>Secure Payment</p>
             </div>
           </div>
         </div>

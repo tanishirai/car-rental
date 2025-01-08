@@ -1,24 +1,19 @@
 import React from "react";
-import Booking from "../components/Booking/Booking";
-import "./home.css";
-import Hero from "../components/Hero/Hero";
-import Work from "../components/Working/Work";
-import Footer from "../components/Footer/Footer";
+import Hero from "../components/home/Hero";
+import Work from "../components/home/Work";
 import FAQ from "../components/FAQ/FAQ";
 const Home = () => {
   return (
     <main>
-      <div className="hero">
+      <div className="mt-8 mr-12 mb-8 ml-12">
         <Hero />
       </div>
-
-      <div className="working">
+      <div className="mt-16 mr-[1.8rem] mb-16 ml-[1.8rem]">
         <Work />
       </div>
       <div className="faq">
         <FAQ />
       </div>
-      <Footer />
     </main>
   );
 };

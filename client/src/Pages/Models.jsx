@@ -1,15 +1,13 @@
-import React from 'react'
-import Footer from '../components/Footer/Footer'
+import React from "react";
 
 const Models = () => {
   return (
     <>
-    <div>
-      <h1>Models</h1>
-    </div>
-    <Footer/>
+      <div>
+        <h1>Models</h1>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Models
+export default Models;

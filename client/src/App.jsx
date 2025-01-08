@@ -1,9 +1,10 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Models from "./Pages/Models";
 import Testimonials from "./Pages/Testimonials";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/default/Navbar";
+import Footer from "./components/default/Footer";
 import Team from "./Pages/Team";
 import Contact from "./Pages/Contact";
 import Errorpage from "./Pages/Errorpage";
@@ -15,7 +16,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
       <Routes>
         <Route index path="/" element={<Home />} />
@@ -28,7 +29,6 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/learnmore" element={<LearnMore />} />
         <Route path="*" element={<Errorpage />} />
-
         <Route
           path="/booking"
           element={
@@ -38,7 +38,8 @@ function App() {
           }
         />
       </Routes>
-    </BrowserRouter>
+      <Footer />
+    </>
   );
 }
 
