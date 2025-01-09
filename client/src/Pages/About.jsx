@@ -99,9 +99,9 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 pt-8">
       {/* Hero Section */}
-      <section className="pt-8 pb-16 md:pb-24">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <motion.div
             variants={fadeIn}

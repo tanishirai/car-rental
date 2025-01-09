@@ -12,7 +12,10 @@ const fadeInUp = {
 
 const Home = () => {
   return (
-    <motion.main initial="initial" animate="animate" className="min-h-screen">
+    <motion.main
+      initial="initial"
+      animate="animate"
+      className="min-h-screen pt-16 md:pt-20">
       <motion.div variants={fadeInUp}>
         <Hero />
       </motion.div>
