@@ -10,6 +10,7 @@ import {
   Clock,
   CreditCard,
 } from "lucide-react";
+import { assets } from "../../assets/assets";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -127,7 +128,7 @@ const Hero = () => {
                           rounded-full filter blur-3xl transform -rotate-12"></div>
 
             <img
-              src="/src/images/car.png"
+              src={assets.car}
               alt="Luxury Car"
               className="relative z-10 w-full h-auto max-w-2xl mx-auto 
                        transform hover:scale-105 transition-transform duration-500"
