@@ -1,6 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Car, MapPin, Calendar, CreditCard, CheckCircle } from "lucide-react";
+import {
+  Car,
+  MapPin,
+  Calendar,
+  CreditCard,
+  CheckCircle,
+  CircleHelp,
+} from "lucide-react";
 
 const Work = () => {
   const container = {
@@ -60,9 +67,10 @@ const Work = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-orange-500 font-bold text-sm uppercase tracking-wider">
-            How It Works
-          </span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-100 rounded-full mb-4">
+            <CircleHelp className="w-5 h-5 text-orange-500" />
+            <span className="text-orange-700 font-medium">How It Works?</span>
+          </div>
           <h2 className="text-4xl font-bold mb-6 mt-2">
             Rent Your Dream Car in 4 Easy Steps
           </h2>
