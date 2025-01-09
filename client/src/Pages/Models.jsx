@@ -1,12 +1,274 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Car,
+  Filter,
+  Search,
+  Fuel,
+  Users,
+  Briefcase,
+  Star,
+  ChevronDown,
+  Settings,
+  Calendar,
+  MapPin,
+} from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Models = () => {
+  const navigate = useNavigate();
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const fadeIn = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+  };
+
+  const categories = [
+    { name: "All", icon: Car },
+    { name: "SUV", icon: Car },
+    { name: "Sedan", icon: Car },
+    { name: "Luxury", icon: Car },
+    { name: "Sports", icon: Car },
+  ];
+
+  const carModels = [
+    {
+      id: 1,
+      name: "Tesla Model 3",
+      category: "Sedan",
+      price: 89,
+      image: "/path/to/tesla.jpg",
+      features: {
+        seats: "5",
+        luggage: "3",
+        fuel: "Electric",
+      },
+      rating: 4.9,
+      reviews: 128,
+      color: "bg-blue-50",
+      iconColor: "text-blue-500",
+    },
+    // Add more cars as needed
+  ];
+
+  const filteredCars = carModels.filter((car) => {
+    const matchesCategory =
+      selectedCategory === "All" || car.category === selectedCategory;
+    const matchesSearch = car.name
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
   return (
-    <>
-      <div>
-        <h1>Models</h1>
-      </div>
-    </>
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 pt-8">
+      {/* Hero Section */}
+      <section className="pt-16 pb-4">
+        <div className="container mx-auto px-4">
+          <motion.div
+            variants={fadeIn}
+            initial="initial"
+            whileInView="whileInView"
+            className="text-center max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-100 rounded-full mb-6">
+              <Car className="w-5 h-5 text-orange-500" />
+              <span className="text-orange-700 font-medium">Our Fleet</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Choose Your Perfect <span className="text-orange-500">Ride</span>
+            </h1>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              Experience premium service with unlimited miles and flexible
+              pick-up options at unbeatable prices. Select from our wide range
+              of well-maintained vehicles.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Search and Filter Section */}
+      <section className="py-8">
+        <div className="container mx-auto px-4">
+          <div className="bg-white rounded-xl p-6 shadow-sm">
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Search Bar */}
+              <div className="relative">
+                <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  placeholder="Search for a car..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:outline-none 
+                           focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                />
+                <Filter className="w-5 h-5 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2" />
+              </div>
+
+              {/* Category Filter */}
+              <div className="flex gap-4 overflow-x-auto pb-2">
+                {categories.map((category) => (
+                  <motion.button
+                    key={category.name}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setSelectedCategory(category.name)}
+                    className={`flex items-center gap-2 px-4 py-3 rounded-lg whitespace-nowrap
+                             ${
+                               selectedCategory === category.name
+                                 ? "bg-orange-500 text-white"
+                                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                             }`}>
+                    <category.icon className="w-5 h-5" />
+                    <span>{category.name}</span>
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Car Models Grid */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredCars.map((car) => (
+              <motion.div
+                key={car.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="group">
+                <div
+                  className={`rounded-xl p-6 ${car.color} transition-all duration-300 
+                             group-hover:-translate-y-2`}>
+                  {/* Car Image */}
+                  <div className="aspect-[4/3] rounded-lg bg-white mb-6 overflow-hidden">
+                    <img
+                      src={car.image}
+                      alt={car.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Car Info */}
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className="text-xl font-bold mb-1">{car.name}</h3>
+                        <span className="text-sm text-gray-600">
+                          {car.category}
+                        </span>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-2xl font-bold text-orange-500">
+                          ₹{car.price}
+                        </span>
+                        <span className="text-sm text-gray-600">/day</span>
+                      </div>
+                    </div>
+
+                    {/* Features */}
+                    <div className="flex justify-between py-4 border-t border-gray-200">
+                      <div className="flex items-center gap-2">
+                        <Users className="w-5 h-5 text-gray-500" />
+                        <span>{car.features.seats} Seats</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Briefcase className="w-5 h-5 text-gray-500" />
+                        <span>{car.features.luggage} Luggage</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Fuel className="w-5 h-5 text-gray-500" />
+                        <span>{car.features.fuel}</span>
+                      </div>
+                    </div>
+
+                    {/* Rating and Book Button */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                        <span className="font-medium">{car.rating}</span>
+                        <span className="text-gray-600">
+                          ({car.reviews} reviews)
+                        </span>
+                      </div>
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => navigate(`/booking/${car.id}`)}
+                        className="px-6 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 
+                                 transition-colors">
+                        Book Now
+                      </motion.button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Booking Process */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            variants={fadeIn}
+            initial="initial"
+            whileInView="whileInView"
+            className="text-center max-w-3xl mx-auto mb-12">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Settings className="w-6 h-6 text-orange-500" />
+              <h2 className="text-3xl font-bold">How to Book</h2>
+            </div>
+            <p className="text-gray-600">
+              We've streamlined our rental process to get you on the road
+              quickly and safely
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Car,
+                title: "Choose Your Car",
+                description: "Select from our wide range of premium vehicles",
+              },
+              {
+                icon: Calendar,
+                title: "Pick Date & Location",
+                description: "Choose your pickup date and preferred location",
+              },
+              {
+                icon: MapPin,
+                title: "Book & Enjoy",
+                description: "Complete your booking and enjoy your journey",
+              },
+            ].map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-gray-50 rounded-lg p-6 text-center">
+                <div
+                  className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center 
+                             mx-auto mb-6">
+                  <step.icon className="w-8 h-8 text-orange-500" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4">{step.title}</h3>
+                <p className="text-gray-600">{step.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 

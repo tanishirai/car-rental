@@ -132,7 +132,7 @@ const Team = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 pt-8">
       {/* Hero Section */}
-      <section className="py-16">
+      <section className="pt-16 pb-4">
         <div className="container mx-auto px-4">
           <motion.div
             variants={fadeIn}
