@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="min-h-screen w-full flex flex-col bg-white">
       <Navbar />
-      <main className="flex-grow pt-16 md:pt-20">
+      <main className="flex-grow">
         <AnimatePresence mode="wait">
           <Routes>
             <Route index path="/" element={<Home />} />
