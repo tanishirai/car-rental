@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { auth } from './Firebase';
-import { sendPasswordResetEmail, fetchSignInMethodsForEmail } from 'firebase/auth';
+import { sendPasswordResetEmail } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 const ForgotPassword = ({ onClose }) => {
@@ -10,16 +10,6 @@ const ForgotPassword = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const validateEmailExists = async (email) => {
-    try {
-      const signInMethods = await fetchSignInMethodsForEmail(auth, email);
-      return signInMethods.length > 0;
-    } catch (error) {
-      console.error('Error checking email:', error);
-      return false;
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -27,18 +17,6 @@ const ForgotPassword = ({ onClose }) => {
     setIsError(false);
 
     try {
-      const emailExists = await validateEmailExists(email);
-
-      if (!emailExists) {
-        setIsError(true);
-        setMessage('No account found with this email address. Redirecting to registration...');
-        setTimeout(() => {
-          onClose();
-          navigate('/register');
-        }, 3000);
-        return;
-      }
-
       await sendPasswordResetEmail(auth, email);
       setMessage('Password reset link sent! Please check your email.');
       setIsError(false);
@@ -50,6 +28,9 @@ const ForgotPassword = ({ onClose }) => {
       switch (error.code) {
         case 'auth/invalid-email':
           setMessage('Please enter a valid email address.');
+          break;
+        case 'auth/user-not-found':
+          setMessage('No account found with this email address.');
           break;
         case 'auth/too-many-requests':
           setMessage('Too many attempts. Please try again later.');
