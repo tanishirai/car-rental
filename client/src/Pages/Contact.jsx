@@ -173,6 +173,7 @@ const Contact = () => {
                       type="text"
                       id="name"
                       name="name"
+                      placeholder="Enter your Name"
                       value={formData.name}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 
@@ -193,6 +194,7 @@ const Contact = () => {
                       type="email"
                       id="email"
                       name="email"
+                      placeholder="Enter your Email"
                       value={formData.email}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 
@@ -214,6 +216,7 @@ const Contact = () => {
                     type="text"
                     id="subject"
                     name="subject"
+                    placeholder="Enter the subject"
                     value={formData.subject}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 
@@ -232,6 +235,7 @@ const Contact = () => {
                   <textarea
                     id="message"
                     name="message"
+                    placeholder="Type your message here"
                     value={formData.message}
                     onChange={handleChange}
                     rows="4"
