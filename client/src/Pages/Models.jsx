@@ -467,11 +467,13 @@ const Models = () => {
                              group-hover:-translate-y-2`}>
                   {/* Car Image */}
                   <div className="aspect-[4/3] rounded-lg bg-white mb-6 overflow-hidden">
-                    <img
+                    <a href={`/models/${car.id}`}>
+                      <img
                       src={car.image}
                       alt={car.name}
                       className="w-full h-full object-cover"
                     />
+                    </a>
                   </div>
 
                   {/* Car Info */}

@@ -4,13 +4,13 @@ import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Models from "./Pages/Models";
 import Testimonials from "./Pages/Testimonials";
+import Booking from "./Pages/Booking";
 import Team from "./Pages/Team";
 import Contact from "./Pages/Contact";
 import Errorpage from "./Pages/Errorpage";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import LearnMore from "./Pages/LearnMore";
-import Booking from "./components/Booking/Booking";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { MainLayout } from "./layout/MainLayout";
 import { AuthLayout } from "./layout/AuthLayout";
@@ -36,11 +36,11 @@ function App() {
           <Route path="/learnmore" element={<LearnMore />} />
           <Route path="*" element={<Errorpage />} />
           <Route
-            path="/booking"
+            path="/booking/:id"
             element={
-              <ProtectedRoute>
+              // <ProtectedRoute>
                 <Booking />
-              </ProtectedRoute>
+              // </ProtectedRoute>
             }
           />
         </Route>
