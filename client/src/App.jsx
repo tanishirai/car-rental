@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Models from "./Pages/Models";
+import Services from "./Pages/Services"
 import Testimonials from "./Pages/Testimonials";
 import Team from "./Pages/Team";
 import Contact from "./Pages/Contact";
@@ -33,6 +34,7 @@ function App() {
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/team" element={<Team />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/learnmore" element={<LearnMore />} />
           <Route path="*" element={<Errorpage />} />
           <Route
