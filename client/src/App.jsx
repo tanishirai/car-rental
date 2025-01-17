@@ -15,39 +15,44 @@ import LearnMore from "./Pages/LearnMore";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { MainLayout } from "./layout/MainLayout";
 import { AuthLayout } from "./layout/AuthLayout";
+import { MouseTrail } from "@stichiboi/react-elegant-mouse-trail";
+
 
 function App() {
   return (
-    <AnimatePresence mode="wait">
-      <Routes>
-        {/* Auth routes without Navbar and Footer */}
-        <Route element={<AuthLayout />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Route>
+    <>
+      <MouseTrail strokeColor="#3377ff" lineWidthStart={40} />
+      <AnimatePresence mode="wait">
+        <Routes>
+          {/* Auth routes without Navbar and Footer */}
+          <Route element={<AuthLayout />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
 
-        {/* Main routes with Navbar and Footer */}
-        <Route element={<MainLayout />}>
-          <Route index path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/models" element={<Models />} />
-          <Route path="/testimonials" element={<Testimonials />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/learnmore" element={<LearnMore />} />
-          <Route path="*" element={<Errorpage />} />
-          <Route
-            path="/booking/:id"
-            element={
-              // <ProtectedRoute>
+          {/* Main routes with Navbar and Footer */}
+          <Route element={<MainLayout />}>
+            <Route index path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/models" element={<Models />} />
+            <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/learnmore" element={<LearnMore />} />
+            <Route path="*" element={<Errorpage />} />
+            <Route
+              path="/booking/:id"
+              element={
+                // <ProtectedRoute>
                 <Booking />
-              // </ProtectedRoute>
-            }
-          />
-        </Route>
-      </Routes>
-    </AnimatePresence>
+                // </ProtectedRoute>
+              }
+            />
+          </Route>
+        </Routes>
+      </AnimatePresence>
+    </>
   );
 }
 
