@@ -4,6 +4,8 @@ import Hero from "../components/home/Hero";
 import Work from "../components/home/Work";
 import Faq from "../components/home/Faq";
 import Loader from "../components/default/Loader";
+import MouseTrail from "../components/default/Mousetrail";
+
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -25,6 +27,7 @@ const Home = () => {
 
   return (
     <>
+    {/* <MouseTrail/> */}
       <AnimatePresence>{isLoading && <Loader />}</AnimatePresence>
 
       <motion.main
