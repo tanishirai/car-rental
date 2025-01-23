@@ -6,7 +6,7 @@ import {
   Mail,
   Clock,
   Facebook,
-  Twitter,
+  // Twitter,
   Instagram,
   Linkedin,
   Send,
@@ -15,6 +15,7 @@ import {
   ArrowRight,
   CheckCircle,
 } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -37,7 +38,7 @@ const Footer = () => {
 
   const socialLinks = [
     { Icon: Facebook, href: "#", color: "hover:bg-blue-600" },
-    { Icon: Twitter, href: "#", color: "hover:bg-blue-400" },
+    { Icon: FaXTwitter, href: "#", color: "hover:bg-gray-700" },
     { Icon: Instagram, href: "#", color: "hover:bg-pink-600" },
     { Icon: Linkedin, href: "#", color: "hover:bg-blue-700" },
   ];
